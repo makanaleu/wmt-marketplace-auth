@@ -1,0 +1,46 @@
+{
+  "name": "wmt-marketplace-auth",
+  "version": "1.0.1-dev",
+  "description": "Generate the authentication headers required by Walmart Marketplace API.",
+  "main": "index.js",
+  "directories": {
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "types": "./index",
+  "scripts": {
+    "build": "rimraf ./lib/ && tsc -p .",
+    "readme": "rm ./README.md && node ./node_modules/.bin/node-readme",
+    "test": "mocha --require ts-node/register $(find ./test/ -name \"*.spec.ts\")"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makanaleu/wmt-marketplace-auth.git"
+  },
+  "keywords": [
+    "Walmart",
+    "API",
+    "SDK",
+    "marketplace",
+    "authentication"
+  ],
+  "author": "Kane McConnell <kane@makanal.eu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makanaleu/wmt-marketplace-auth/issues"
+  },
+  "homepage": "https://github.com/makanaleu/wmt-marketplace-auth#readme",
+  "devDependencies": {
+    "ts-node": "5.0.1",
+    "typescript": "2.8.1",
+    "tslint": "5.9.1",
+    "mocha": "5.0.5",
+    "chai": "4.1.2",
+    "nyc": "11.6.0",
+    "rimraf": "2.6.2",
+    "@types/mocha": "5.0.0",
+    "@types/chai": "4.1.2",
+    "@types/node": "9.6.2",
+    "node-readme": "0.1.9"
+  }
+}

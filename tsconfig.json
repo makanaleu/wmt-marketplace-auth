@@ -1,0 +1,27 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitUseStrict": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "target": "es6",
+        "rootDir": "src/",
+        "outDir": "./",
+        "emitBOM": true,
+        "charset": "utf8"
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node-modules",
+        "test/**/*.spec.ts"
+    ]
+}
