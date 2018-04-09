@@ -45,14 +45,14 @@ Outputs Authentication headers as an object.
 
 ```json
 {
-  'WM_SVC.NAME': 'Walmart Marketplace',
-  'WM_QOS.CORRELATION_ID': '1234hfvgtr',
-  'WM_SEC.TIMESTAMP': 1523287838530,
-  'WM_SEC.AUTH_SIGNATURE': 'E1EPWiqwuLYceSVr2XGmljo7qq1+EDI5++1XvFcVf+/klas+mLMAJbDihfAwkjyDxi3WkJDdTCNfle0O+4V/9g==',
-  'WM_CONSUMER.CHANNEL.TYPE': '38b7eb6c-3672-4022-93a2-f47794f36338',
-  'WM_CONSUMER.ID': 'f091ae58-774c-45ff-9d8a-e30a83344e42',
-  Accept: 'application/json',
-  'Content-Type': 'application/json'
+  "WM_SVC.NAME": "Walmart Marketplace",
+  "WM_QOS.CORRELATION_ID": "1234hfvgtr",
+  "WM_SEC.TIMESTAMP": 1523287838530,
+  "WM_SEC.AUTH_SIGNATURE": "E1EPWiqwuLYceSVr2XGmljo7qq1+EDI5++1XvFcVf+/klas+mLMAJbDihfAwkjyDxi3WkJDdTCNfle0O+4V/9g==",
+  "WM_CONSUMER.CHANNEL.TYPE": "38b7eb6c-3672-4022-93a2-f47794f36338",
+  "WM_CONSUMER.ID": "f091ae58-774c-45ff-9d8a-e30a83344e42",
+  Accept: "application/json",
+  "Content-Type": "application/json"
 }
 ```
 
