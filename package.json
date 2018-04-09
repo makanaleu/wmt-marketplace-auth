@@ -1,6 +1,6 @@
 {
   "name": "wmt-marketplace-auth",
-  "version": "1.0.1-dev",
+  "version": "1.0.1",
   "description": "Generate the authentication headers required by Walmart Marketplace API.",
   "main": "index.js",
   "directories": {
