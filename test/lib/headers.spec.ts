@@ -13,6 +13,9 @@ describe('Custom Headers object has expected defaults.', () => {
   it('Has a Content-Type header of application/json', () => {
     expect(headers.ContentType).to.equal('application/json');
   });
+  it('Has a CorrelationId', () => {
+    expect(headers.WMQOS.CorrelationId).is.not.null;
+  });
 });
 
 describe('Signed Headers object is built from Custom Headers object.', () => {

@@ -1,4 +1,5 @@
 import * as Util from './util';
+import * as uuid from 'uuid';
 import { createSign, Signer } from 'crypto';
 
 /**
@@ -107,6 +108,7 @@ export class Custom {
   ContentType: string;
 
   constructor() {
+    this.WMQOS = { CorrelationId: uuid()};
     this.WMService = { Name: 'Walmart Marketplace' };
     this.Accept = 'application/json';
     this.ContentType = 'application/json';
