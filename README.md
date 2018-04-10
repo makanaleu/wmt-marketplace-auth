@@ -16,6 +16,7 @@ Generate the authentication headers required by Walmart Marketplace API.
 
 - Returns the required authentication headers including the digital signature.
 - Defaults the `Accept` and `Content-Type` headers to `application/json`, which can be changed to `application/xml` if XML is preferred.
+- Generates a UUID for the `CorrelationId` if one is not specified for the request.
 - Timestamp can be directly set or default to current time.
 
 ## Typical Usage
@@ -79,12 +80,14 @@ headers.setTimestamp(1523287838530);
 
  - **npm run build** : `rimraf ./lib/ && tsc -p .`
  - **npm run readme** : `rm ./README.md && node ./node_modules/.bin/node-readme`
+ - **npm run package** : `npm run build && npm run readme`
  - **npm run test** : `mocha --require ts-node/register $(find ./test/ -name "*.spec.ts")`
 
 ## Dependencies
 
 Package | Version | Dev
 --- |:---:|:---:
+[uuid](https://www.npmjs.com/package/uuid) | 3.2.1 | ✖
 [ts-node](https://www.npmjs.com/package/ts-node) | 5.0.1 | ✔
 [typescript](https://www.npmjs.com/package/typescript) | 2.8.1 | ✔
 [tslint](https://www.npmjs.com/package/tslint) | 5.9.1 | ✔
@@ -95,6 +98,7 @@ Package | Version | Dev
 [@types/mocha](https://www.npmjs.com/package/@types/mocha) | 5.0.0 | ✔
 [@types/chai](https://www.npmjs.com/package/@types/chai) | 4.1.2 | ✔
 [@types/node](https://www.npmjs.com/package/@types/node) | 9.6.2 | ✔
+[@types/uuid](https://www.npmjs.com/package/@types/uuid) | 3.4.3 | ✔
 [node-readme](https://www.npmjs.com/package/node-readme) | 0.1.9 | ✔
 
 
