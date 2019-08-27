@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 2019-08-26, Version 2.1.1 (Beta), @kmcconnell
+
+Updated readme.
+
+## 2019-08-26, Version 2.1.0 (Beta), @kmcconnell
+
+Eff. 2019-08-28, Walmart is disabling digital signature based requests and now
+requires token based authentication. The Consumer Key and Private Key are
+replaced with Client ID and Client Secret.
+
+### Notable Changes
+
+- headers:
+  - Changed header compilation according to Token API token request requirements.
+
 ## 2018-04-10, Version 1.1.0 (Stable), @kmcconnell
 
 ### Notable Changes

@@ -25,44 +25,12 @@ export interface WMQOS {
  */
 export interface WMSecurity {
     /**
-     * The Epoch timestamp.
+     * The short-lived token, (which expires after 15 minutes), receiving after
+     * using the Token API.
      *
-     * Header WM_SEC.TIMESTAMP.
+     * Header WM_SEC.ACCESS_TOKEN.
      */
-    Timestamp: number;
-    /**
-     * The vendor's digital signature.
-     *
-     * Header WM_SEC.AUTH_SIGNATURE.
-     */
-    AuthSignature: string;
-}
-/**
- * WM_CONSUMER.CHANNEL Authentication header namespace.
- */
-export interface Channel {
-    /**
-     * A unique ID to track the consumer request by channel. Use the Consumer Channel
-     * Type received during onboarding.
-     *
-     * Header WM_CONSUMER.CHANNEL.TYPE.
-     */
-    Type: string;
-}
-/**
- * WM_CONSUMER Authentication header namespace.
- */
-export interface WMConsumer {
-    /**
-     * WM_CONSUMER.CHANNEL Authentication header namespace.
-     */
-    Channel: Channel;
-    /**
-     * The Walmart Consumer ID from Developer Center required to access the API.
-     *
-     * Header WM_CONSUMER.ID.
-     */
-    ConsumerId: string;
+    AccessToken: string;
 }
 /**
  * Walmart authentication headers. Use the custom class to set custom values to the
@@ -81,12 +49,9 @@ export declare class Custom {
     WMQOS: WMQOS;
     /**
      * WM_SEC Authentication headers.
+     *
      */
     WMSecurity: WMSecurity;
-    /**
-     * WM_CONSUMER Authentication headers.
-     */
-    WMConsumer: WMConsumer;
     /**
      * The desired returned data format of the response. May override the default to
      * 'application/xml' if an XML response is preferred instead of JSON.
@@ -105,58 +70,37 @@ export declare class Custom {
      *                      system.
      */
     setCorrelationId(correlationId: string): void;
-    /**
-     * Set the Consumer ID.
-     *
-     * @param consumer The Walmart Consumer ID from Developer Center required to access
-     *                 the API.
-     */
-    setConsumer(consumer: WMConsumer): void;
-    /**
-     * Set the request Timestamp. Note: Resets the AuthSignature to empty string. This
-     * method is primarily used by tests. Timestamp is automatically set by sign()
-     * method if not otherwise set.
-     *
-     * @param timestamp Epoch timestamp in milliseconds.
-     */
-    setTimestamp(timestamp: number): void;
 }
 /**
- * The API request headers compiled according to the API spec, including the required
- * digital signature.
+ * The Token API request headers compiled according to the API specs.
  */
-export interface Signed {
+export interface TokenRequestHeaders {
     'WM_SVC.NAME': string;
     'WM_QOS.CORRELATION_ID': string;
-    'WM_SEC.TIMESTAMP': number;
-    'WM_SEC.AUTH_SIGNATURE': string;
-    'WM_CONSUMER.CHANNEL.TYPE': string;
-    'WM_CONSUMER.ID': string;
+    'Authorization': string;
     'Accept': string;
     'Content-Type': string;
 }
 /**
- * The request properties required to generate the digital signature.
+ * The standard request headers including the granted access token.
  */
-export interface DigitalSignatureRequest {
-    /**
-     * The full URL to call, including path and query parameters.
-     */
-    RequestUrl: string;
-    /**
-     * The vendor's Base-64-encoded, PKCS#8 stored Private Key.
-     */
-    PrivateKey: string;
-    /**
-     * The HTTP request method used, in capital letters (i.e. GET, POST).
-     */
-    RequestMethod: string;
+export interface TokenHeaders extends TokenRequestHeaders {
+    'WM_SEC.ACCESS_TOKEN': string;
 }
-/**
- * Returns the signed headers required for the API request.
- *
- * @param custom Walmart authentication headers. Use the custom class to set custom
- *               values to the headers before adding to the request.
- * @param request The request properties required to generate the digital signature.
- */
-export declare function sign(custom: Custom, request: DigitalSignatureRequest): Signed;
+export interface Credentials {
+    /**
+     * The API ClientID, provided by Walmart.
+     */
+    ClientID: string;
+    /**
+     * The API ClientSecret, provided by Walmart.
+     */
+    ClientSecret: string;
+}
+export interface TokenResponse {
+    'access_token': string;
+    'token_type': string;
+    'expires_in': number;
+}
+export declare function getTokenRequestHeaders(custom: Custom, credentials: Credentials): TokenRequestHeaders;
+export declare function uuid(): string;
