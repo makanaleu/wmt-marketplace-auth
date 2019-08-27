@@ -14,33 +14,9 @@ Generate the authentication headers required by Walmart Marketplace API.
 
 ## Features
 
-- Returns the required authentication headers including the digital signature.
+- Returns the required authentication headers for Walmart Marketplace API.
 - Defaults the `Accept` and `Content-Type` headers to `application/json`, which can be changed to `application/xml` if XML is preferred.
 - Generates a UUID for the `CorrelationId` if one is not specified for the request.
-- Timestamp can be directly set or default to current time.
-
-## Typical Usage
-
-Set the custom headers, then use `Authenticate.sign()` for the specified request.
-
-```javascript
-import { Authenticate } from 'wmt-marketplace-auth';
-
-let headers = new Authenticate.Custom;
-headers.setCorrelationId('1234hfvgtr');
-headers.setConsumer({
-    Channel: { Type: '38b7eb6c-3672-4022-93a2-f47794f36338' },
-    ConsumerId: 'f091ae58-774c-45ff-9d8a-e30a83344e42'
-});
-
-let request = {
-  RequestUrl: 'https://marketplace.walmartapis.com/v3/feeds',
-  PrivateKey: 'MIIBVgIBADANBgkqhkiG9w0BAQEFAASCAUAwggE8A...',
-  RequestMethod: 'GET'
-}
-
-let signedHeaders = Authenticate.sign(headers, request);
-```
 
 Outputs Authentication headers as an object.
 
@@ -48,12 +24,20 @@ Outputs Authentication headers as an object.
 {
   "WM_SVC.NAME": "Walmart Marketplace",
   "WM_QOS.CORRELATION_ID": "1234hfvgtr",
-  "WM_SEC.TIMESTAMP": 1523287838530,
-  "WM_SEC.AUTH_SIGNATURE": "E1EPWiqwuLYceSVr2XGmljo7qq1+EDI5++1XvFcVf+/klas+mLMAJbDihfAwkjyDxi3WkJDdTCNfle0O+4V/9g==",
-  "WM_CONSUMER.CHANNEL.TYPE": "38b7eb6c-3672-4022-93a2-f47794f36338",
-  "WM_CONSUMER.ID": "f091ae58-774c-45ff-9d8a-e30a83344e42",
+  "Authorization": "Basic E1EPWiqwuLYceSVr2XGmlj...",
   "Accept": "application/json",
-  "Content-Type": "application/json"
+  "Content-Type": "application/x-www-form-urlencoded"
+}
+```
+
+```json
+{
+  "WM_SVC.NAME": "Walmart Marketplace",
+  "WM_QOS.CORRELATION_ID": "1234hfvgtr",
+  "Authorization": "Basic E1EPWiqwuLYceSVr2XGmlj...",
+  "Accept": "application/json",
+  "Content-Type": "application/json",
+  "Access": "eyJraWQiOiIwNjI..."
 }
 ```
 
@@ -66,12 +50,6 @@ headers.Accept = 'application/xml';
 headers.ContentType = 'application/xml';
 ```
 
-#### Set a custom timestamp.
-
-```javascript
-headers.setTimestamp(1523287838530);
-```
-
 ## Install
 
 `npm install --save wmt-marketplace-auth`
@@ -79,9 +57,6 @@ headers.setTimestamp(1523287838530);
 ## Scripts
 
  - **npm run build** : `rimraf ./lib/ && tsc -p .`
- - **npm run readme** : `rm ./README.md && node ./node_modules/.bin/node-readme`
- - **npm run package** : `npm run build && npm run readme`
- - **npm run test** : `mocha --require ts-node/register $(find ./test/ -name "*.spec.ts")`
 
 ## Dependencies
 
